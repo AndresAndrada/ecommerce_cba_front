@@ -1,9 +1,10 @@
 import create from 'zustand';
 // import { persist } from "zustand/middlewxare";
 
-export const productUserStore = create((set) => ({
+export const useProductStore = create((set) => ({
     DataPerfilProduct: [], // DATA_PERFIL_USER
     Product: {}, // DATA_Product
+    Categories: [],
     DetailsProduct: {},
 
     setProduct: (values) => set({ Product: values }),

@@ -7,6 +7,7 @@ import Navbar from '../module/core/components/Navbar'
 import { useUserStore } from '../stores'
 
 const Home = lazy(() => import('../screens/Home'))
+const Shop = lazy(() => import('../screens/Shop'))
 const Login = lazy(() => import('../screens/Login'))
 const Register = lazy(() => import('../screens/Register'))
 
@@ -39,6 +40,7 @@ export default function NavigatorRouter() {
       <RouterRoutes>
         <Route>
           <Route path={'/'} element={<Home />} />
+          <Route path={'/shop'} element={<Shop />} />
           <Route path={'/sign-in'} element={<Login />} />
           <Route path={'/sign-up'} element={<Register />} />
         </Route>
