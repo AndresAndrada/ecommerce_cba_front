@@ -1,14 +1,11 @@
 import { useState } from 'react'
-import { useBoundStore } from '@/store/index'
-import { shallow } from 'zustand/shallow'
-import { Moralis } from 'moralis-v1'
-import { Services } from '@/services'
+import { useProductStore } from '../../../stores'
+import axios from 'axios'
 
 function useGetProducts() {
     const [loading, setLoading] = useState(false)
 
-    const { setProducts, setProductById, setTotalProductsPages, setCategories } =
-        useBoundStore((state) => state, shallow)
+    const { setProducts, setProductById, setTotalProductsPages, setCategories } = useProductStore((state) => state)
     const getAllProducts = async (
         page,
         proConsumer,
@@ -17,8 +14,7 @@ function useGetProducts() {
     ) => {
         setLoading(true)
         try {
-            const response = await Moralis.Cloud.run(
-                Services.products.getAllProducts,
+            const response = await axios.get('product',
                 {
                     page,
                     proConsumer,
@@ -49,8 +45,8 @@ function useGetProducts() {
     const getProductById = async (productsId) => {
         setLoading(true)
         try {
-            const response = await Moralis.Cloud.run(
-                Services.products.getProductsById,
+            const response = await axios.get(
+                `product/${productsId}`,
                 {
                     productsId,
                 }
@@ -71,8 +67,8 @@ function useGetProducts() {
 
     const getAllCategories = async (proConsumer) => {
         try {
-            const reaponse = await Moralis.Cloud.run(
-                Services.products.getAllCategories,
+            const reaponse = await axios.get(
+                '/category',
                 {
                     proConsumer,
                 }

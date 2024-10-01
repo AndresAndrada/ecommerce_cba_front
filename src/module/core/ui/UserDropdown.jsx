@@ -14,20 +14,20 @@ export default function UserDropdown() {
   // const localStorage = getLocalStorage('Parse/023/currentUser')
   const { userlogout } = useLogout()
   return (
-    <div className="dropdown dropdown-end ">
+    <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button">
         <img src={UserCircle} alt="icon search" className="" />
       </div>
       <ul
         tabIndex={-1}
-        className="menu menu-sm dropdown-content mt-8 z-[100] p-2 shadow bg-secondary rounded-box w-52"
+        className="menu menu-sm dropdown-content mt-8 z-[100] p-2 shadow bg-primary rounded-box w-52"
       >
         {Authenticated || User?.objectId ? (
           <>
             <li>
               <NavItem route="/profile">
                 <div className="flex gap-3 ">
-                  <h3 className=" text-[16px] font-medium text-white">
+                  <h3 className=" text-[16px] font-medium text-secondary">
                     Perfil de usuario
                   </h3>
                   <img
@@ -40,7 +40,7 @@ export default function UserDropdown() {
             </li>
             <li>
               <button type="button" onClick={async () => await userlogout()}>
-                <h3 className=" text-[16px] font-medium text-white mr-6">
+                <h3 className=" text-[16px] font-medium text-secondary mr-6">
                   Cerrar Sesion
                 </h3>
                 {/* <img
@@ -55,7 +55,7 @@ export default function UserDropdown() {
         ) : (
           <li>
             <button type="button" onClick={() => navigate('/sign-in')}>
-              <h3 className=" text-[16px] font-medium text-white mr-6">
+              <h3 className=" text-[16px] font-medium text-secondary mr-6">
                 Iniciar Sesion
               </h3>
               <ArrowLeftEndOnRectangleIcon className="size-6 text-white cursor-pointer" />

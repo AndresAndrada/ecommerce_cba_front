@@ -9,7 +9,7 @@ function useLogout() {
         setAuthenticated(false)
         setUser([])
     }
-    const userlogout = async () => {
+    const logout = async () => {
         try {
             clearDataUser()
             // location.reload();
@@ -19,7 +19,7 @@ function useLogout() {
         // return data;
     }
     return {
-        userlogout,
+        logout,
     }
 }
 

@@ -1,20 +1,31 @@
 import LOGO from '../../../assets/react.svg'
 import shoppingCart from '../../../assets/svg/shoppingCart.svg'
 import logoutIcon from '../../../assets/svg/logout.svg'
+import loginIcon from '../../../assets/svg/login.svg'
 import menuIcon from '../../../assets/svg/menu.svg'
 import NavItem from '../ui/navigation/NavItem'
 // import NotificationDropdown from '../ui/dropdown/notificationDropdown'
 import UserDropdown from '../ui/UserDropdown'
-import { Link } from 'react-router-dom'
-// import { useBoundStore } from '@/store'
-// import { shallow } from 'zustand/shallow'
+import { Link, useNavigate } from 'react-router-dom'
+import { useUserStore } from '../../../stores'
+import useLogout from '../../auth/hooks/useLogout';
 // import { useEffect } from 'react'
 // import { getLocalStorage } from '@/modules/auth/utils/getLocalStorage'
 
 export default function Navbar() {
+  const { Authenticated } = useUserStore();
+  const navigate = useNavigate();
+  const { logout } = useLogout();
+  const handlerSision = () => {
+    Authenticated
+      ? navigate('/sign-in')
+      : logout()
+  }
+
+
   // const { itemsInCart, setItemsInCart } =
   //   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  //   useBoundStore((state) => state, shallow)
+  //   useBoundStore((state) => state)
 
   // // biome-ignore lint/correctness/useExhaustiveDependencies: <suppressions/parse>
   // useEffect(() => {
@@ -28,7 +39,7 @@ export default function Navbar() {
 
   return (
     <div>
-      <div className="navbar bg-secondary fixed z-50">
+      <div className="navbar bg-primary fixed z-50">
         <div className="navbar-start">
           <Link
             to={'/'}
@@ -99,13 +110,13 @@ export default function Navbar() {
                 </NavItem>
               </li>
               <li>
-                <button type="button" onClick={() => { }}>
-                  <h3 className=" text-[16px] font-medium text-white">
-                    Cerrar Sesion
+                <button type="button" className="flex justify-between items-center w-full" onClick={handlerSision}>
+                  <h3 className="text-[16px] font-medium text-white">
+                    {Authenticated ? 'Cerrar Sesión' : 'Iniciar Sesión'}
                   </h3>
                   <img
-                    src={logoutIcon}
-                    alt="Cerrar Sesion icon"
+                    src={Authenticated ? loginIcon : logoutIcon}
+                    alt={Authenticated ? 'Cerrar Sesión' : 'Iniciar Sesión'}
                     className="w-[25px] text-white"
                   />
                 </button>

@@ -42,29 +42,26 @@ export default function CreatePetsSection() {
   }
   return (
     <section className="w-full flex flex-col sm:flex-row">
-      <div className="h-[352px] min-h-[20vh] w-full sm:w-1/2">
+      <div className="h-[352px] min-h-[20vh] md:w-full sm:w-full">
         <img
-          src="https://res.cloudinary.com/dge3tzzsh/image/upload/v1715005594/gravitad_general/022-assets/mirando-el-paisaje_g2imnt.webp"
+          src="https://res.cloudinary.com/de7fyvmdp/image/upload/v1727576809/samples/Mates_termos_rftncv.jpg"
           alt="Perosna y mascota mirando el paisaje montañoso"
           className="object-cover h-full w-full"
         />
       </div>
-      <div className="bg-primary w-full sm:w-1/2 h-[352px] min-h-[20vh] flex flex-col items-center justify-center gap-6 p-4 text-secondary">
+      <div className="bg-primary w-full h-[352px] min-h-[20vh] flex flex-col items-center justify-center gap-6 md:p-4 text-secondary">
         <h4 className="text-2xl lg:text-4xl font-bold text-center">
-          Crea perfiles de control para tus peludos amigos
+          En esta tienda puedes observar, comprar y evacuar dudas sobre el placer de compartir buenos mates
         </h4>
         <p className="max-w-[600px] text-center">
-          Ahora puedes asegurarte de que estén recibiendo la nutrición adecuada
-          de manera fácil y personalizada. En la App, agregar los datos de tus
-          mascotas para un control nutricional efectivo es tan sencillo como
-          darles un regalo.
+          Ahora puedes asegurarte de que estés disfrutando un buen momento con unos ricos mates. En la App, puedes incorporar buenos productos para aprovechar al maximo unos buenos mates.
         </p>
         <button
           type="button"
           onClick={handleAddPets}
           className="button__white font-medium w-[200px] flex justify-center items-center hover:ring-2 hover:ring-slate-400 active:ring-slate-300 focus:bg-orange-200"
         >
-          Agregar mascotas
+          Ir a la tienda
         </button>
       </div>
     </section>

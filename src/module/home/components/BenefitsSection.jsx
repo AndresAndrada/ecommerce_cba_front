@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
-import img from '../../../assets/react.svg'
-import { scrollToTop } from '../../../utils/scrollToTop'
+import { Link } from 'react-router-dom';
+import { scrollToTop } from '../../../utils/scrollToTop';
 
 export default function BenefitsSection() {
     return (
@@ -8,53 +7,47 @@ export default function BenefitsSection() {
             <h2 className="text-2xl sm:text-4xl xl:text-6xl text-secondary font-semibold tracking-tighter text-center">
                 Beneficio de nuestros productos de calidad
             </h2>
-            <div className="flex flex-col sm:flex-row items-center justify-evenly w-full max-w-[1300px]">
-                <div className="flex flex-col gap-4 items-center justify-start w-[341px] max-w-full min-h-[341px] px-4 lg:px-12">
+            <div className="flex flex-col md:flex-row items-center justify-evenly w-full max-w-[1300px] gap-12">
+                <div className="flex flex-col gap-4 items-center justify-start w-[90%] min-w[30%] sm:w-[30%] lg:w-[25%] min-h-[341px] px-4 lg:px-12">
                     <img
-                        src={img}
+                        src="https://res.cloudinary.com/de7fyvmdp/image/upload/v1727573466/samples/Termo_dwvfwx.jpg"
                         alt="Corazón verde con un check"
-                        className="h-[151.3px] w-auto mb-4"
+                        className="h-[251px] lg:h-[200px] md:h-[150px] w-auto mb-4 rounded-[100%]"
                     />
                     <h4 className="text-2xl text-secondary font-semibold tracking-tight text-center">
-                        Salud óptima
+                        Termos
                     </h4>
                     <p className="text-center text-secondary">
-                        Una alimentación adecuada es clave para una vida feliz y saludable
-                        juntos.
+                        Una alimentación adecuada es clave para una vida feliz y saludable juntos.
                     </p>
                 </div>
-
-                <div className="flex flex-col gap-4 items-center justify-start w-[341px] max-w-full min-h-[341px] px-4 lg:px-12">
+                <div className="flex flex-col gap-4 items-center justify-start w-[90%] min-w[30%] sm:w-[30%] lg:w-[25%] min-h-[341px] px-4 lg:px-12">
                     <img
-                        src={img}
+                        src="https://res.cloudinary.com/de7fyvmdp/image/upload/v1727471411/samples/mate_fxegda.jpg"
                         alt="Mano verde con una patita de animal dentro"
-                        className="h-[151.3px] w-auto mb-4"
+                        className="h-[251px] lg:h-[200px] md:h-[150px] w-auto mb-4 rounded-[100%]"
                     />
                     <h4 className="text-2xl text-secondary font-semibold tracking-tight text-center">
-                        Vínculo emocional
+                        Mates
                     </h4>
                     <p className="text-center text-secondary">
-                        Cada momento compartido al preparar y disfrutar comidas nutritivas
-                        refuerza ese vínculo especial único entre ustedes
+                        Cada momento compartido al preparar y disfrutar comidas nutritivas refuerza ese vínculo especial único entre ustedes.
                     </p>
                 </div>
-
-                <div className="flex flex-col gap-4 items-center w-[341px] max-w-full min-h-[341px] px-12">
+                <div className="flex flex-col gap-4 items-center justify-start w-[90%] min-w[30%] sm:w-[30%] lg:w-[25%] min-h-[341px] px-4 lg:px-12">
                     <img
-                        src={img}
+                        src="https://res.cloudinary.com/de7fyvmdp/image/upload/v1727574368/samples/Canasta_Mates_ylxbmq.jpg"
                         alt="Persona con su mascota"
-                        className="h-[151.3px] w-auto px-4 lg:mb-4"
+                        className="h-[251px] lg:h-[200px] md:h-[150px] w-auto mb-4 rounded-[100%]"
                     />
                     <h4 className="text-2xl text-secondary font-semibold tracking-tight text-center">
-                        Calidad de vida
+                        Canastas
                     </h4>
                     <p className="text-center text-secondary">
-                        Imagina una vida vibrante junto a tu mascota. Con una dieta
-                        equilibrada, esa visión se hace realidad.
+                        Imagina una vida vibrante junto a tu mascota. Con una dieta equilibrada, esa visión se hace realidad.
                     </p>
                 </div>
             </div>
-
             <Link
                 onClick={() => scrollToTop({ smooth: false })}
                 to="/recipes"
@@ -63,5 +56,5 @@ export default function BenefitsSection() {
                 Descubre recetas
             </Link>
         </section>
-    )
+    );
 }

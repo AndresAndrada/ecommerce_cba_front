@@ -1,26 +1,23 @@
-import SearchBar from '@/modules/core/components/search-bar'
+/* eslint-disable react/prop-types */
+import SearchBar from '../../core/components/SearchBar'
 // import useGetProducts from '@/modules/shop/hooks/useGetProducts'
-import useGetProducts from '../hook/useGetProducts'
 // import { categories } from '../mock/categories'
 import clsx from 'clsx'
 import { useProductStore } from '../../../stores'
+import { useState } from 'react'
 
 export default function NavigationShop({
-    // eslint-disable-next-line react/prop-types
     option,
-    // eslint-disable-next-line react/prop-types
     setOption,
-    // eslint-disable-next-line react/prop-types
     setCurrentPage,
-    // eslint-disable-next-line react/prop-types
     setSearch,
-    // eslint-disable-next-line react/prop-types
     selectedTab,
-    // eslint-disable-next-line react/prop-types
     setSelectedTab,
 }) {
+    // eslint-disable-next-line no-unused-vars
+    const [loading, setLoading] = useState(false)
     const { Categories } = useProductStore((state) => state)
-    const { loading } = useGetProducts()
+    // const { loading } = useGetProducts()
 
     const handleTabClick = (tab) => {
         setSelectedTab(tab)
@@ -36,28 +33,28 @@ export default function NavigationShop({
 
     return (
         <div className="flex flex-col items-center justify-center gap-8 px-4 mb-10 pt-2 sm:pt-10">
-            <div className="flex gap-4 font-medium text-primary">
+            <div className="flex gap-4 font-medium text-secondary">
                 <button
                     type="button"
-                    onClick={() => handleConsumerChange('Personas')}
-                    className={`${buttonUnderline('Personas')}`}
+                    onClick={() => handleConsumerChange('Minorista')}
+                    className={`${buttonUnderline('Minorista')} hover:text-zinc-950`}
                 >
-                    Personas
+                    Minorista
                 </button>
                 <button
                     type="button"
-                    onClick={() => handleConsumerChange('Mascotas')}
-                    className={`${buttonUnderline('Mascotas')} `}
+                    onClick={() => handleConsumerChange('Mayorista')}
+                    className={`${buttonUnderline('Mayorista')} hover:text-zinc-950`}
                 >
-                    Mascotas
+                    Mayorista
                 </button>
             </div>
             <SearchBar setSearch={setSearch} setSelectedTab={setSelectedTab} />
             <div className="flex gap-4 sm:gap-10 flex-wrap w-full justify-center">
                 <button
                     type="button"
-                    className={clsx('font-medium hover:text-primary transition-colors', {
-                        'text-primary underline': selectedTab === '',
+                    className={clsx('font-medium hover:text-zinc-950 transition-colors', {
+                        'text-secondary underline': selectedTab === '',
                     })}
                     onClick={() => handleTabClick('')}
                 >

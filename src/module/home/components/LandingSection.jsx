@@ -5,7 +5,7 @@ export default function LandingSection() {
     return (
         <div className="w-full p-6 sm:p-12 lg:p-24 bg-primary flex flex-col md:flex-row justify-center items-center gap-6 sm:gap-10 lg:gap-16">
             <img
-                src="https://res.cloudinary.com/dge3tzzsh/image/upload/v1715005594/gravitad_general/022-assets/chica-comiendo_kveczn.webp"
+                src="https://res.cloudinary.com/de7fyvmdp/image/upload/v1727357824/mate_wpb70o.jpg"
                 alt="Mujer almorzando en la calle"
                 className="object-cover h-[372px] w-[380px] max-w-full rounded-md shadow-xl"
             />

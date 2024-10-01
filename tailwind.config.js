@@ -33,7 +33,7 @@ export default {
         hover_primary: 'hsl(var(--hover-primary))',
         hover_secondary: 'hsl(var(--hover-secondary))',
         primary: {
-          DEFAULT: 'white',
+          DEFAULT: '#F6D8C6',
           foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
@@ -69,7 +69,7 @@ export default {
       },
       backgroundImage: {
         banner:
-          'url(https://res.cloudinary.com/dge3tzzsh/image/upload/v1715003929/gravitad_general/022-assets/banner-principal_wzodmw.webp)',
+          'url(https://res.cloudinary.com/de7fyvmdp/image/upload/v1727357561/mate_hawtls.jpg)',
         banner_person:
           'url(https://res.cloudinary.com/dge3tzzsh/image/upload/v1714141543/gravitad_general/022-assets/banner-recetas_g8xavu.png)',
         banner_pet:
