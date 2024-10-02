@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 // import { useEffect } from 'react'
 import { useEffect, useState } from 'react'
 import { Pagination } from '../module/core/ui/Pagination'
@@ -25,19 +27,13 @@ export default function Shop() {
     ConsumerProducts,
     setConsumerProducts,
   } = useProductStore((state) => state)
-  // eslint-disable-next-line no-unused-vars
   const [search, setSearch] = useState('')
-  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState('')
   // const debounceSearch = useDebounce(search, DEBOUNCE_TIME)
-  console.log(Products, 'PRODUCT');
-
   const { getAllProducts, } = useGetProduct()
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <suppressions/parse>
   // useEffect(() => {
   //     getAllCategories(queryPath[ConsumerProducts])
   // }, [ConsumerProducts])
-  // // biome-ignore lint/correctness/useExhaustiveDependencies: <suppressions/parse>
   useEffect(() => {
     getAllProducts();
   }, [])

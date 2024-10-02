@@ -1,9 +1,8 @@
+/* eslint-disable react/prop-types */
 import { Link, useLocation } from 'react-router-dom'
 
 export default function NavItem({
-    // eslint-disable-next-line react/prop-types
     children,
-    // eslint-disable-next-line react/prop-types
     route,
 }) {
     const location = useLocation()

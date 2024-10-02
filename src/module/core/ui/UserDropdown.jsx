@@ -9,6 +9,7 @@ import { ArrowLeftStartOnRectangleIcon } from '@heroicons/react/24/outline'
 import { useUserStore } from '../../../stores'
 
 export default function UserDropdown() {
+  const emailAdmin = import.meta.env.VITE_EMAIL_ADMIN;
   const navigate = useNavigate()
   const { Authenticated, User } = useUserStore((state) => state)
   // const localStorage = getLocalStorage('Parse/023/currentUser')
@@ -37,17 +38,19 @@ export default function UserDropdown() {
                   />
                 </div>
               </NavItem>
+              {User?.emailUser === emailAdmin && <NavItem route="/create-product">
+                <div className="flex gap-3 ">
+                  <h3 className=" text-[16px] font-medium text-secondary">
+                    Crear producto
+                  </h3>
+                </div>
+              </NavItem>}
             </li>
             <li>
               <button type="button" onClick={async () => await userlogout()}>
                 <h3 className=" text-[16px] font-medium text-secondary mr-6">
                   Cerrar Sesion
                 </h3>
-                {/* <img
-                  src={logoutIcon}
-                  alt="Cerrar Sesion icon"
-                  className="w-[25px] text-white"
-                /> */}
                 <ArrowLeftStartOnRectangleIcon className="size-6 text-white cursor-pointer" />
               </button>
             </li>{' '}
