@@ -13,7 +13,7 @@ export default function UserDropdown() {
   const navigate = useNavigate()
   const { Authenticated, User } = useUserStore((state) => state)
   // const localStorage = getLocalStorage('Parse/023/currentUser')
-  const { userlogout } = useLogout()
+  const { logout } = useLogout()
   return (
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button">
@@ -47,7 +47,7 @@ export default function UserDropdown() {
               </NavItem>}
             </li>
             <li>
-              <button type="button" onClick={async () => await userlogout()}>
+              <button type="button" onClick={async () => await logout()}>
                 <h3 className=" text-[16px] font-medium text-secondary mr-6">
                   Cerrar Sesion
                 </h3>

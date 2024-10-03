@@ -117,3 +117,37 @@ export const DashBoardeScheme = yup.object().shape({
 
     keyPublic: yup.string().required('Ingrese nombre completo'),
 })
+
+export const CreateProduct = yup.object().shape({
+    name_product: yup
+        .string()
+        .max(65, 'Máximo de 65 caracteres')
+        .required('Ingrese nombre del producto'),
+
+    type: yup
+        .string()
+        .min(5, 'Debe contener más de 5 caracteres')
+        .max(65, 'Máximo de 65 caracteres')
+        .required('Ingrese tipo de producto'),
+
+    description: yup
+        .string()
+        .min(7, 'Mínimo 7 caracteres')
+        .max(10, 'Máximo 10 caracteres')
+        .required('Ingrese documento empresarial'),
+
+    descriptionPromotion: yup
+        .string()
+        .max(255)
+        .required('Ingrese el correo')
+        .matches(
+            /^[^@]+@[^@]+\.[^@]+$/,
+            "El correo debe contener '@' antes del '.'"
+        ),
+
+    minorista: yup
+        .number()
+        .min(1, 'Mínimo 10 caracteres')
+        // .max(11, 'Máximo 10 caracteres')
+        .required('Ingrese el precio MINORISTA del producto'),
+})

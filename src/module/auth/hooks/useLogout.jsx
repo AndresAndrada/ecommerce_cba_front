@@ -10,6 +10,8 @@ function useLogout() {
         setUser([])
     }
     const logout = async () => {
+        console.log('ENTREEE');
+
         try {
             clearDataUser()
             // location.reload();
