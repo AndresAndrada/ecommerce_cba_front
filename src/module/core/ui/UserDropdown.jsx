@@ -28,7 +28,7 @@ export default function UserDropdown() {
             <li>
               <NavItem route="/profile">
                 <div className="flex gap-3 ">
-                  <h3 className=" text-[16px] font-medium text-secondary">
+                  <h3 className=" text-[16px] font-medium text-white">
                     Perfil de usuario
                   </h3>
                   <img
@@ -40,7 +40,7 @@ export default function UserDropdown() {
               </NavItem>
               {User?.emailUser === emailAdmin && <NavItem route="/create-product">
                 <div className="flex gap-3 ">
-                  <h3 className=" text-[16px] font-medium text-secondary">
+                  <h3 className=" text-[16px] font-medium text-white">
                     Crear producto
                   </h3>
                 </div>
@@ -48,7 +48,7 @@ export default function UserDropdown() {
             </li>
             <li>
               <button type="button" onClick={async () => await logout()}>
-                <h3 className=" text-[16px] font-medium text-secondary mr-6">
+                <h3 className=" text-[16px] font-medium text-white mr-6">
                   Cerrar Sesion
                 </h3>
                 <ArrowLeftStartOnRectangleIcon className="size-6 text-white cursor-pointer" />

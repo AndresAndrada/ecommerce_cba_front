@@ -32,12 +32,13 @@ export default {
         foreground: 'hsl(var(--foreground))',
         hover_primary: 'hsl(var(--hover-primary))',
         hover_secondary: 'hsl(var(--hover-secondary))',
+        customColor: '#00796B',
         primary: {
           DEFAULT: '#F6D8C6',
           foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
-          DEFAULT: '#5c5470',
+          DEFAULT: '#00796B',
           foreground: 'hsl(var(--secondary-foreground))',
         },
         complementary: 'hsl(var(--complementary))',
@@ -111,6 +112,13 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      screens: {
+        'sm': '480px',  // Personalizado, por ejemplo, para pantallas pequeñas de 480px
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
       },
     },
   },

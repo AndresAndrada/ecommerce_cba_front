@@ -39,7 +39,7 @@ export default function Navbar() {
 
   return (
     <div>
-      <div className="navbar bg-primary fixed z-50">
+      <div className="navbar text-secondary bg-primary fixed z-50">
         <div className="navbar-start">
           <Link
             to={'/'}

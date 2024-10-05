@@ -5,7 +5,7 @@ export default function Register() {
     return (
         <header
             className={
-                'relative top-[var(--navbar-height)] flex flex-col items-center w-screen h-screen overflow-hidden justify-center bg-register bg-no-repeat bg-cover bg-[center_right_-15rem] sm:bg-center'
+                'relative top-[var(--navbar-height)] flex flex-col items-center w-screen py-8 overflow-hidden justify-center bg-register bg-no-repeat bg-cover bg-[center_right_-15rem] sm:bg-center'
             }
         >
             <div className="absolute top-6 left-6">
