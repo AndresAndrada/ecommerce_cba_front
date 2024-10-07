@@ -133,7 +133,6 @@ export const CreateProduct = yup.object().shape({
     description: yup
         .string()
         .min(7, 'Mínimo 7 caracteres')
-        .max(10, 'Máximo 10 caracteres')
         .required('Ingrese documento empresarial'),
 
     descriptionPromotion: yup

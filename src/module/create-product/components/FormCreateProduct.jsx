@@ -29,8 +29,8 @@ export const FormCreateProduct = () => {
       description: '',
       descriptionPromotion: '',
       minorista: 0,
-      mayorista: '',
-      pricePromotion: '',
+      mayorista: 0,
+      pricePromotion: 0,
       stock: ''
     },
     validationSchema: CreateProduct,
@@ -74,9 +74,9 @@ export const FormCreateProduct = () => {
       </h1>
       <form
         onSubmit={formik.handleSubmit}
-        className="w-full inline-flex flex-col justify-center items-center gap-8"
+        className="w-full inline-flex flex-col justify-center items-center gap-5"
       >
-        <div className='w-[90%] sm:max-w-[70%] flex flex-col sm:flex-col md:flex-row justify-center gap-3 sm:gap-10'>
+        <div className='w-[90%] sm:max-w-[70%] flex flex-col sm:flex-col md:flex-row justify-center gap-3 sm:gap-10 '>
           <div className='w-full flex flex-col gap-5'>
             <div className="flex flex-col w-full items-start gap-2">
               <div className="flex px-4 justify-end items-start gap-2">
@@ -86,12 +86,9 @@ export const FormCreateProduct = () => {
               </div>
               <input
                 type="text"
-                placeholder="Nombre completo"
-                className={
-                  formik.touched.name_product && formik.errors.name_product
-                    ? 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-red-500  placeholder-teal-700 rounded-lg focus:border-primary'
-                    : 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-teal-700  placeholder-teal-700 rounded-lg focus:border-primary'
-                }
+                placeholder="Nombre producto"
+                className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formik.touched.name_product && formik.errors.name_product ? 'border-red-500' : 'border-teal-700'
+                  }`}
                 onBlur={formik.handleBlur}
                 // onError={formik.touched.name_product && Boolean(formik.errors.name_product)}
                 onChange={formik.handleChange}
@@ -103,7 +100,7 @@ export const FormCreateProduct = () => {
               {formik.touched.name_product && (
                 <p
                   id="name_product-error"
-                  className="text-center min-w-3 w-72 text-red-600 text-xs"
+                  className="text-center min-w-3 text-red-600 text-xs"
                 >
                   {formik.errors.name_product}
                 </p>
@@ -139,7 +136,7 @@ export const FormCreateProduct = () => {
               {formik.touched.type && (
                 <p
                   id="type-error"
-                  className="text-center min-w-3 w-72 text-red-600 text-xs"
+                  className="text-center min-w-3 text-red-600 text-xs"
                 >
                   {formik.errors.type}
                 </p>
@@ -152,11 +149,8 @@ export const FormCreateProduct = () => {
                 </label>
               </div>
               <label
-                className={
-                  formik.touched.description && formik.errors.description
-                    ? 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-red-500 placeholder-teal-700 rounded-lg focus-within:border-primary'
-                    : 'input input-bordered flex items-center gap-2 w-full bg-white p-2 border-2 border-hawk-turquoise border-teal-700 rounded-lg focus-within:border-primary'
-                }
+                className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formik.touched.description && formik.errors.description ? 'border-red-500' : 'border-teal-700'
+                  }`}
               >
                 <input
                   type='text'
@@ -175,40 +169,9 @@ export const FormCreateProduct = () => {
               {formik.touched.description && (
                 <p
                   id="email-error"
-                  className="text-center min-w-3 w-72 text-red-600 text-xs"
+                  className="text-center min-w-3 text-red-600 text-xs"
                 >
                   {formik.errors.description}
-                </p>
-              )}
-            </div>
-            <div className="flex flex-col w-full items-start gap-2">
-              <div className="flex px-4 justify-end items-start gap-2">
-                <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
-                  Descripción promoción
-                </label>
-              </div>
-              <input
-                type="text"
-                placeholder="Descripción promoción"
-                className={
-                  formik.touched.descriptionPromotion && formik.errors.descriptionPromotion
-                    ? 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-red-500  placeholder-teal-700 rounded-lg focus:border-primary'
-                    : 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-teal-700  placeholder-teal-700 rounded-lg focus:border-primary'
-                }
-                onBlur={formik.handleBlur}
-                // onError={formik.touched.descriptionPromotion && Boolean(formik.errors.descriptionPromotion)}
-                onChange={formik.handleChange}
-                value={formik.values.descriptionPromotion}
-                id="descriptionPromotion"
-                name="descriptionPromotion"
-                autoComplete="descriptionPromotion"
-              />
-              {formik.touched.descriptionPromotion && (
-                <p
-                  id="descriptionPromotion-error"
-                  className="text-center min-w-3 w-72 text-red-600 text-xs"
-                >
-                  {formik.errors.descriptionPromotion}
                 </p>
               )}
             </div>
@@ -217,15 +180,12 @@ export const FormCreateProduct = () => {
             <div className="flex flex-col w-full items-start gap-2">
               <div className="flex px-4 justify-end items-start gap-2">
                 <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
-                  Precios minorista
+                  Precios minorista <span className='text-gray-400'>{"(opcional)"}</span>
                 </label>
               </div>
               <label
-                className={
-                  formik.touched.minorista && formik.errors.minorista
-                    ? 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-red-500 placeholder-teal-700 rounded-lg focus-within:border-primary'
-                    : 'input input-bordered flex items-center gap-2 w-full bg-white p-2 border-2 border-hawk-turquoise border-teal-700 rounded-lg focus-within:border-primary'
-                }
+                className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formik.touched.minorista && formik.errors.minorista ? 'border-red-500' : 'border-teal-700'
+                  }`}
               >
                 <input
                   type="number"
@@ -233,9 +193,9 @@ export const FormCreateProduct = () => {
                   placeholder='0'
                   id="minorista"
                   onBlur={formik.handleBlur}
-                  value={formik.values.minorista}
+                  value={formik.values.minorista ? formik.values.minorista : ''}
                   // onError={
-                  //   formik.touched.minorista && Boolean(formik.errors.minorista)
+                  //   formik.touched.mayorista && Boolean(formik.errors.mayorista)
                   // }
                   autoComplete="current-minorista"
                   onChange={formik.handleChange}
@@ -245,7 +205,7 @@ export const FormCreateProduct = () => {
               {formik.touched.minorista && (
                 <p
                   id="email-error"
-                  className="text-center min-w-3 w-72 text-red-600 text-xs"
+                  className="text-center min-w-3 text-red-600 text-xs"
                 >
                   {formik.errors.minorista}
                 </p>
@@ -258,111 +218,124 @@ export const FormCreateProduct = () => {
                 </label>
               </div>
               <label
-                className={
-                  formik.touched.password && formik.errors.password
-                    ? 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-red-500 placeholder-teal-700 rounded-lg focus-within:border-primary'
-                    : 'input input-bordered flex items-center gap-2 w-full bg-white p-2 border-2 border-hawk-turquoise border-teal-700 rounded-lg focus-within:border-primary'
-                }
+                className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formik.touched.mayorista && formik.errors.mayorista ? 'border-red-500' : 'border-teal-700'
+                  }`}
               >
                 <input
                   type="number"
                   className="grow placeholder-teal-700"
                   placeholder='0'
-                  id="password"
+                  id="mayorista"
                   onBlur={formik.handleBlur}
-                  value={formik.values.password}
+                  value={formik.values.mayorista ? formik.values.mayorista : ''}
                   // onError={
-                  //   formik.touched.password && Boolean(formik.errors.password)
+                  //   formik.touched.mayorista && Boolean(formik.errors.mayorista)
                   // }
-                  autoComplete="current-password"
+                  autoComplete="current-mayorista"
                   onChange={formik.handleChange}
                 />
                 <MdOutlineAttachMoney className='text-customColor' />
               </label>
-              {formik.touched.email && (
-                <p
-                  id="email-error"
-                  className="text-center min-w-3 w-72 text-red-600 text-xs"
-                >
-                  {formik.errors.email}
-                </p>
-              )}
             </div>
-            {showPromotion && (<><div className="flex flex-col w-full items-start gap-2">
-              <div className="flex px-4 justify-end items-start gap-2">
-                <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
-                  Precios promoción <span className='text-gray-400'>{"(opcional)"}</span>
-                </label>
-              </div>
-              <label
-                className={
-                  formik.touched.password && formik.errors.password
-                    ? 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-red-500 placeholder-teal-700 rounded-lg focus-within:border-primary'
-                    : 'input input-bordered flex items-center gap-2 w-full bg-white p-2 border-2 border-hawk-turquoise border-teal-700 rounded-lg focus-within:border-primary'
-                }
-              >
-                <input
-                  type="number"
-                  className="grow placeholder-teal-700"
-                  placeholder='0'
-                  id="password"
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                  // onError={
-                  //   formik.touched.password && Boolean(formik.errors.password)
-                  // }
-                  autoComplete="current-password"
-                  onChange={formik.handleChange}
-                />
-                <MdOutlineAttachMoney className='text-customColor' />
-              </label>
-              {formik.touched.email && (
-                <p
-                  id="email-error"
-                  className="text-center min-w-3 w-72 text-red-600 text-xs"
-                >
-                  {formik.errors.email}
-                </p>
-              )}
-            </div></>)}
             <div className="flex flex-col w-full items-start gap-2">
               <div className="flex px-4 justify-end items-start gap-2">
                 <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
-                  Descripción
+                  Stock
                 </label>
               </div>
               <label
-                className={
-                  formik.touched.password && formik.errors.password
-                    ? 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-red-500 placeholder-teal-700 rounded-lg focus-within:border-primary'
-                    : 'input input-bordered flex items-center gap-2 w-full bg-white p-2 border-2 border-hawk-turquoise border-teal-700 rounded-lg focus-within:border-primary'
-                }
+                className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formik.touched.stock && formik.errors.stock ? 'border-red-500' : 'border-teal-700'
+                  }`}
+              >
+                <input
+                  type="number"
+                  className="grow placeholder-teal-700"
+                  placeholder='0'
+                  id="stock"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.stock}
+                  // onError={
+                  //   formik.touched.stock && Boolean(formik.errors.stock)
+                  // }
+                  autoComplete="current-stock"
+                  onChange={formik.handleChange}
+                />
+                <span className='text-customColor text-xs'>cant.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div className="w-36">
+          <label className="label cursor-pointer flex flex-col gap-2">
+            <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">Promoción</label>
+            <input type="checkbox" className={`toggle [--tglbg:white] ${showPromotion ? 'bg-green-950 border-green-950' : ''}`} onClick={() => setShowPromotion(!showPromotion)} />
+          </label>
+        </div>
+        {showPromotion && (
+          <div className='w-[90%] sm:max-w-[70%] flex flex-col sm:flex-col md:flex-row justify-center gap-3 sm:gap-10 '>
+            <div className="flex flex-col w-full items-start gap-2">
+              <div className="flex px-4 justify-end items-start gap-2">
+                <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
+                  Descripción promoción
+                </label>
+              </div>
+              <label
+                className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formik.touched.descriptionPromotion && formik.errors.descriptionPromotion ? 'border-red-500' : 'border-teal-700'
+                  }`}
               >
                 <input
                   type='text'
                   className="grow placeholder-teal-700"
-                  placeholder="Contraseña"
-                  id="password"
+                  placeholder="Descripción"
+                  id="descriptionPromotion"
                   onBlur={formik.handleBlur}
-                  value={formik.values.password}
+                  value={formik.values.descriptionPromotion}
                   // onError={
-                  //   formik.touched.password && Boolean(formik.errors.password)
+                  //   formik.touched.descriptionPromotion && Boolean(formik.errors.descriptionPromotion)
                   // }
-                  autoComplete="current-password"
+                  autoComplete="current-descriptionPromotion"
                   onChange={formik.handleChange}
                 />
               </label>
-              {formik.touched.password && (
-                <p
-                  id="email-error"
-                  className="text-center min-w-3 w-72 text-red-600 text-xs"
+            </div>
+            <div className='w-full flex flex-col gap-5'>
+              <div className="flex flex-col w-full items-start gap-2">
+                <div className="flex px-4 justify-end items-start gap-2">
+                  <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
+                    Precios promoción <span className='text-gray-400'>{"(opcional)"}</span>
+                  </label>
+                </div>
+                <label
+                  className={
+                    formik.touched.promotionPrice && formik.errors.promotionPrice
+                      ? 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-red-500 placeholder-teal-700 rounded-lg focus-within:border-primary'
+                      : 'input input-bordered flex items-center gap-2 w-full bg-white p-2 border-2 border-hawk-turquoise border-teal-700 rounded-lg focus-within:border-primary'
+                  }
                 >
-                  {formik.errors.password}
-                </p>
-              )}
+                  <input
+                    type="number"
+                    className="grow placeholder-teal-700"
+                    placeholder='0'
+                    id="promotionPrice"
+                    onBlur={formik.handleBlur}
+                    value={formik.values.promotionPrice}
+                    autoComplete="promotionPrice"
+                    onChange={formik.handleChange}
+                  />
+                  <MdOutlineAttachMoney className='text-customColor' />
+                </label>
+                {formik.touched.promotionPrice && (
+                  <p
+                    id="promotionPrice-error"
+                    className="text-center min-w-3 w-72 text-red-600 text-xs"
+                  >
+                    {formik.errors.promotionPrice}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
         <div className="w-48">
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
           <button
