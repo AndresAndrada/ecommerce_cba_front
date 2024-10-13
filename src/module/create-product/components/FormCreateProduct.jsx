@@ -3,28 +3,40 @@ import { useEffect, useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
 import { useFormik } from 'formik'
 import { CreateProduct } from '../../../schemas'
-import showPasswordIcon from '../../../assets/svg/showPassword.svg'
-import hidePasswordIcon from '../../../assets/svg/showPassword.svg'
+import { DialogEditImgUser } from './dialog-edit-img-user'
 import { useNavigate } from 'react-router-dom'
 import useCreateProduct from '../hooks/useCreateProduct'
 import useGetType from '../hooks/useGetType'
 import { useTypeStore } from '../../../stores'
 import { MdOutlineAttachMoney } from "react-icons/md";
+import img from '../../../assets/icons/user-circle.svg'
 
 export const FormCreateProduct = () => {
   const [showPromotion, setShowPromotion] = useState(false);
+  const productAvatar = img;
+  const [selectedFile, setSelectedFile] = useState(productAvatar);
+  const [loading, setLoading] = useState(false);
   const { Type } = useTypeStore();
   const navigate = useNavigate();
   const { createProduct } = useCreateProduct();
   const { getAllType } = useGetType();
-  console.log(Type, 'TIPOS');
+
+  const handleImageChange = (event) => {
+    console.log('ENTREEE');
+    // biome-ignore lint/complexity/useOptionalChain: <explanation>
+    if (event.currentTarget.files && event.currentTarget.files[0]) {
+      setSelectedFile(URL.createObjectURL(event.currentTarget.files[0]))
+      formik.setFieldValue('fileimage', event.currentTarget.files[0])
+    }
+  }
 
   useEffect(() => {
     getAllType();
   }, [])
+
   const formik = useFormik({
     initialValues: {
-      idType: '',
+      type: '',
       name_product: '',
       description: '',
       descriptionPromotion: '',
@@ -35,33 +47,34 @@ export const FormCreateProduct = () => {
     },
     validationSchema: CreateProduct,
     onSubmit: async (values, { resetForm }) => {
-      console.log(JSON.stringify(values))
       // values.name_product = values.email.split('@')[0]
-      // try {
-      await createProduct(values)
-      // const res = await createProduct(values)
-      //   if (res?.ok) {
-      //     navigate('/sign-in')
-      resetForm()
-      //     toast.success('Cuenta creada con éxito', {
-      //       duration: 2000,
-      //       position: 'top-center',
-      //     })
-      //   } else {
-      //     console.log(res, 'RESPONSE');
-
-      //     toast.error(res.data.message, {
-      //       duration: 4000,
-      //       position: 'top-center',
-      //     })
-      //   }
-      // } catch (error) {
-      //   console.log(error)
-      //   toast.error('Algo salio mal, vuelve a intentarlo', {
-      //     duration: 3000,
-      //     position: 'top-center',
-      //   })
-      // }
+      try {
+        // await createProduct(values)
+        const res = await createProduct(values)
+        if (res?.ok) {
+          setLoading(true)
+          resetForm()
+          toast.success('Producto creado con éxito', {
+            duration: 2000,
+            position: 'top-center',
+          })
+          navigate('/')
+          setLoading(false)
+        } else {
+          setLoading(false)
+          toast.error(res.data.message, {
+            duration: 4000,
+            position: 'top-center',
+          })
+        }
+      } catch (error) {
+        console.log(error)
+        setLoading(false)
+        toast.error('Algo salio mal, vuelve a intentarlo', {
+          duration: 3000,
+          position: 'top-center',
+        })
+      }
     },
   })
   return (
@@ -76,8 +89,21 @@ export const FormCreateProduct = () => {
         onSubmit={formik.handleSubmit}
         className="w-full inline-flex flex-col justify-center items-center gap-5"
       >
+        <div className="w-48">
+          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+          <div className="flex justify-center items-center gap-x-5">
+            <DialogEditImgUser
+              handleImageChange={handleImageChange}
+              loading={loading}
+              selectedFile={selectedFile}
+              img={productAvatar}
+              handleSubmit={formik.handleSubmit}
+            />
+          </div>
+        </div>
         <div className='w-[90%] sm:max-w-[70%] flex flex-col sm:flex-col md:flex-row justify-center gap-3 sm:gap-10 '>
           <div className='w-full flex flex-col gap-5'>
+
             <div className="flex flex-col w-full items-start gap-2">
               <div className="flex px-4 justify-end items-start gap-2">
                 <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
@@ -117,7 +143,6 @@ export const FormCreateProduct = () => {
                 placeholder="Tipo de producto"
                 className={`select input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 ${formik.touched.type && formik.errors.type ? 'border-red-500' : 'border-teal-700'}  placeholder-teal-700 rounded-lg focus:border-primary`}
                 onBlur={formik.handleBlur}
-                // onError={formik.touched.type && Boolean(formik.errors.type)}
                 onChange={formik.handleChange}
                 value={formik.values.type}
                 id="type"
@@ -128,7 +153,7 @@ export const FormCreateProduct = () => {
                   Tipo de producto
                 </option>
                 {Type?.length > 0 && Type.map(type => {
-                  return <><option value={type.id} className='text-teal-700'>{type.name_type}</option>
+                  return <><option value={type.id} className='text-teal-700' key={type.id}>{type.name_type}</option>
                   </>
                 })
                 }

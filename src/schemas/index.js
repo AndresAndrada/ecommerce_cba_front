@@ -135,14 +135,6 @@ export const CreateProduct = yup.object().shape({
         .min(7, 'Mínimo 7 caracteres')
         .required('Ingrese documento empresarial'),
 
-    descriptionPromotion: yup
-        .string()
-        .max(255)
-        .required('Ingrese el correo')
-        .matches(
-            /^[^@]+@[^@]+\.[^@]+$/,
-            "El correo debe contener '@' antes del '.'"
-        ),
 
     minorista: yup
         .number()
