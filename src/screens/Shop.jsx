@@ -13,6 +13,7 @@ import { FaceFrownIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import { useProductStore } from '../stores'
 import useGetProduct from '../module/shop/hook/useGetProduct'
+import { SiPrdotco } from 'react-icons/si'
 
 // const DEBOUNCE_TIME = 500
 
@@ -44,7 +45,7 @@ export default function Shop() {
   }
 
   return (
-    <main className="min-h-screen bg-primary">
+    <main className="bg-primary pb-10">
       <header
         className={clsx('w-full h-[200px] lg:h-[341px] bg-cover bg-no-repeat', {
           'bg-banner_person bg-[center_top_-1rem] sm:bg-[center_top_-2rem] lg:bg-[center_top_-5rem] xl:bg-[center_top_-7rem]':
@@ -75,8 +76,8 @@ export default function Shop() {
               </div>
             </div>
           ) : (
-            <div className="h-[300px] mx-4">
-              <ProductsGrid products={Products} />
+            <div className="mx-4">
+              <ProductsGrid key={Products[0].id} products={Products} />
             </div>
           )}
 

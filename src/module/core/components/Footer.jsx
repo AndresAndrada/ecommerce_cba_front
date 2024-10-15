@@ -6,7 +6,7 @@ import { SiGmail } from "react-icons/si";
 export default function Footer() {
   return (
     <footer>
-      <footer className="footer p-10 bg-primary text-base-content justify-around text-center">
+      <div className="footer p-10 bg-primary text-base-content justify-around text-center">
         <aside>
           <img src={LOGO} alt="Logo" className="w-48" />
         </aside>
@@ -57,7 +57,7 @@ export default function Footer() {
           </p>
           <p className="text-secondary">ejemplo@ejemplo.com</p>
         </nav>
-      </footer>
+      </div>
       <div className=" text-center text-secondary bg-primary pb-2">
         Copyright © nombre. All Rights Reserved
       </div>

@@ -4,7 +4,6 @@ import { Toaster, toast } from 'react-hot-toast'
 import { useFormik } from 'formik'
 import { CreateProduct } from '../../../schemas'
 import { DialogEditImgUser } from './dialog-edit-img-user'
-import { useNavigate } from 'react-router-dom'
 import useCreateProduct from '../hooks/useCreateProduct'
 import useGetType from '../hooks/useGetType'
 import { useTypeStore } from '../../../stores'
@@ -17,7 +16,6 @@ export const FormCreateProduct = () => {
   const [selectedFile, setSelectedFile] = useState(productAvatar);
   const [loading, setLoading] = useState(false);
   const { Type } = useTypeStore();
-  const navigate = useNavigate();
   const { createProduct } = useCreateProduct();
   const { getAllType } = useGetType();
 
@@ -26,7 +24,7 @@ export const FormCreateProduct = () => {
     // biome-ignore lint/complexity/useOptionalChain: <explanation>
     if (event.currentTarget.files && event.currentTarget.files[0]) {
       setSelectedFile(URL.createObjectURL(event.currentTarget.files[0]))
-      formik.setFieldValue('fileimage', event.currentTarget.files[0])
+      formik.setFieldValue('image', event.currentTarget.files[0])
     }
   }
 
@@ -47,22 +45,25 @@ export const FormCreateProduct = () => {
     },
     validationSchema: CreateProduct,
     onSubmit: async (values, { resetForm }) => {
-      // values.name_product = values.email.split('@')[0]
       try {
-        // await createProduct(values)
+        console.log(values, 'VALUES');
+        setLoading(true)
+        const formData = new FormData()
+        formData.append('image', values.image)
+        // formData.append('upload_preset', 'gravitad_preset')
+        console.log(formData, 'FORMDATA')
         const res = await createProduct(values)
         if (res?.ok) {
-          setLoading(true)
           resetForm()
           toast.success('Producto creado con éxito', {
             duration: 2000,
             position: 'top-center',
           })
-          navigate('/')
+          // navigate('/')
           setLoading(false)
         } else {
           setLoading(false)
-          toast.error(res.data.message, {
+          toast.error(res?.data?.message, {
             duration: 4000,
             position: 'top-center',
           })
