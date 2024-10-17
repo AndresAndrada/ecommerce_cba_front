@@ -7,49 +7,45 @@ function useCreateProduct() {
 
   const createProduct = async (values) => {
     try {
+      // Primero crea el producto sin la imagen
       const productValues = {
         idType: values.type,
         product: {
           name_product: values.name_product,
           description: {
             description: values.description,
-            descriptionPromotion: values.descriptionPromotion
+            descriptionPromotion: values.descriptionPromotion,
           },
-          pirce: {
+          price: {
             minorista: values.minorista,
             mayorista: values.mayorista,
-            pricePromotion: values.pricePromotion
+            pricePromotion: values.pricePromotion,
           },
-          stock: values.stock
+          stock: values.stock,
         }
-      }
+      };
+      // Envío de la petición POST para crear el producto
       const { data } = await axios.post('/products', productValues, {
         headers: {
           'Authorization': User.tokenSession
         }
       });
       if (data?.newProducto?.id !== undefined) {
-        const resImg = await axios.patch(`/products/${data?.newProducto?.id}`, { image: values.image }, {
-          headers: {
-            'Authorization': User.tokenSession,
-            'Content-Type': 'multipart/form-data'
-          }
-        })
+        console.log(data?.newProducto?.id, 'ENTRE PRODUCT');
+
+        // Actualiza el estado con el producto nuevo
         setProducts({
-          objectId: data.objectId,
+          objectId: data.newProducto.id,
           ...data,
-          ...resImg,
-        })
-        return { ok: true }
+        });
+        return { ok: true };
       }
-      if (data?.message) {
-        return { ok: false, message: data?.message }
-      }
-      return { ok: false }
+      if (data?.message) return { ok: false, message: data?.message };
+      return { ok: false };
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
   return {
     createProduct,
   }

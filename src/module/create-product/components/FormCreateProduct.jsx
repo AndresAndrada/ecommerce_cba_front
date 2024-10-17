@@ -9,6 +9,7 @@ import useGetType from '../hooks/useGetType'
 import { useTypeStore } from '../../../stores'
 import { MdOutlineAttachMoney } from "react-icons/md";
 import img from '../../../assets/icons/user-circle.svg'
+import usePatchImageProduct from '../hooks/usePatchImageProduct'
 
 export const FormCreateProduct = () => {
   const [showPromotion, setShowPromotion] = useState(false);
@@ -17,6 +18,7 @@ export const FormCreateProduct = () => {
   const [loading, setLoading] = useState(false);
   const { Type } = useTypeStore();
   const { createProduct } = useCreateProduct();
+  const { patchImageProduct } = usePatchImageProduct();
   const { getAllType } = useGetType();
 
   const handleImageChange = (event) => {
@@ -46,14 +48,14 @@ export const FormCreateProduct = () => {
     validationSchema: CreateProduct,
     onSubmit: async (values, { resetForm }) => {
       try {
-        console.log(values, 'VALUES');
         setLoading(true)
-        const formData = new FormData()
-        formData.append('image', values.image)
+        // const formData = new FormData()
+        // formData.append('image', values.image)
         // formData.append('upload_preset', 'gravitad_preset')
-        console.log(formData, 'FORMDATA')
+        // console.log(formData, 'FORMDATA')
         const res = await createProduct(values)
-        if (res?.ok) {
+        const resImg = await patchImageProduct(values.image)
+        if (res?.ok && resImg?.ok) {
           resetForm()
           toast.success('Producto creado con éxito', {
             duration: 2000,
@@ -63,7 +65,7 @@ export const FormCreateProduct = () => {
           setLoading(false)
         } else {
           setLoading(false)
-          toast.error(res?.data?.message, {
+          toast.error('Error al crear producto', {
             duration: 4000,
             position: 'top-center',
           })
