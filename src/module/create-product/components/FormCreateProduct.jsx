@@ -6,7 +6,7 @@ import { CreateProduct } from '../../../schemas'
 import { DialogEditImgUser } from './dialog-edit-img-user'
 import useCreateProduct from '../hooks/useCreateProduct'
 import useGetType from '../hooks/useGetType'
-import { useTypeStore } from '../../../stores'
+import { useProductStore, useTypeStore } from '../../../stores'
 import { MdOutlineAttachMoney } from "react-icons/md";
 import img from '../../../assets/icons/user-circle.svg'
 import usePatchImageProduct from '../hooks/usePatchImageProduct'
@@ -17,12 +17,12 @@ export const FormCreateProduct = () => {
   const [selectedFile, setSelectedFile] = useState(productAvatar);
   const [loading, setLoading] = useState(false);
   const { Type } = useTypeStore();
+  const { Products } = useProductStore((state) => state);
   const { createProduct } = useCreateProduct();
   const { patchImageProduct } = usePatchImageProduct();
   const { getAllType } = useGetType();
 
   const handleImageChange = (event) => {
-    console.log('ENTREEE');
     // biome-ignore lint/complexity/useOptionalChain: <explanation>
     if (event.currentTarget.files && event.currentTarget.files[0]) {
       setSelectedFile(URL.createObjectURL(event.currentTarget.files[0]))
@@ -38,6 +38,7 @@ export const FormCreateProduct = () => {
     initialValues: {
       type: '',
       name_product: '',
+      image: '',
       description: '',
       descriptionPromotion: '',
       minorista: 0,
@@ -52,10 +53,9 @@ export const FormCreateProduct = () => {
         // const formData = new FormData()
         // formData.append('image', values.image)
         // formData.append('upload_preset', 'gravitad_preset')
-        // console.log(formData, 'FORMDATA')
-        const res = await createProduct(values)
-        const resImg = await patchImageProduct(values.image)
-        if (res?.ok && resImg?.ok) {
+        const res = await createProduct(values);
+        if (res?.ok && Products?.objectId) {
+          await patchImageProduct(values.image);
           resetForm()
           toast.success('Producto creado con éxito', {
             duration: 2000,
