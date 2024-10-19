@@ -31,9 +31,6 @@ function useCreateProduct() {
         }
       });
       if (data?.newProducto?.id !== undefined) {
-        console.log(data?.newProducto?.id, 'ENTRE PRODUCT');
-
-        // Actualiza el estado con el producto nuevo
         setProducts({
           objectId: data.newProducto.id,
           ...data,
