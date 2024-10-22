@@ -10,6 +10,8 @@ import { useProductStore, useTypeStore } from '../../../stores'
 import { MdOutlineAttachMoney } from "react-icons/md";
 import img from '../../../assets/icons/user-circle.svg'
 import usePatchImageProduct from '../hooks/usePatchImageProduct'
+import InputComponent from '../../core/ui/inputs/InputComponent'
+import InputNumberComponent from '../../core/ui/inputs/InputNumberComponent'
 
 export const FormCreateProduct = () => {
   const [showPromotion, setShowPromotion] = useState(false);
@@ -104,37 +106,17 @@ export const FormCreateProduct = () => {
             />
           </div>
         </div>
-        <div className='w-[90%] sm:max-w-[70%] flex flex-col sm:flex-col md:flex-row justify-center gap-3 sm:gap-10 '>
+        <div className='w-[90%] sm:max-w-[90%] flex flex-col sm:flex-col md:flex-row justify-center gap-3 sm:gap-10 '>
           <div className='w-full flex flex-col gap-5'>
-
-            <div className="flex flex-col w-full items-start gap-2">
-              <div className="flex px-4 justify-end items-start gap-2">
-                <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
-                  Nombre
-                </label>
-              </div>
-              <input
-                type="text"
-                placeholder="Nombre producto"
-                className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formik.touched.name_product && formik.errors.name_product ? 'border-red-500' : 'border-teal-700'
-                  }`}
-                onBlur={formik.handleBlur}
-                // onError={formik.touched.name_product && Boolean(formik.errors.name_product)}
-                onChange={formik.handleChange}
-                value={formik.values.name_product}
-                id="name_product"
-                name="name_product"
-                autoComplete="name_product"
-              />
-              {formik.touched.name_product && (
-                <p
-                  id="name_product-error"
-                  className="text-center min-w-3 text-red-600 text-xs"
-                >
-                  {formik.errors.name_product}
-                </p>
-              )}
-            </div>
+            <InputComponent
+              title='Nombre'
+              name='name_product'
+              formikTouched={formik.touched.name_product}
+              formikError={formik.errors.name_product}
+              formikOnBlur={formik.handleBlur}
+              formikHandleChange={formik.handleChange}
+              formikValuesName={formik.values.name_product}
+            />
             <div className="flex flex-col w-full items-start gap-2">
               <div className="flex px-4 justify-end items-start gap-2">
                 <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
@@ -170,127 +152,41 @@ export const FormCreateProduct = () => {
                 </p>
               )}
             </div>
-            <div className="flex flex-col w-full items-start gap-2">
-              <div className="flex px-4 justify-end items-start gap-2">
-                <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
-                  Descripción
-                </label>
-              </div>
-              <label
-                className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formik.touched.description && formik.errors.description ? 'border-red-500' : 'border-teal-700'
-                  }`}
-              >
-                <input
-                  type='text'
-                  className="grow placeholder-teal-700"
-                  placeholder="Descripción"
-                  id="description"
-                  onBlur={formik.handleBlur}
-                  value={formik.values.description}
-                  // onError={
-                  //   formik.touched.description && Boolean(formik.errors.description)
-                  // }
-                  autoComplete="current-description"
-                  onChange={formik.handleChange}
-                />
-              </label>
-              {formik.touched.description && (
-                <p
-                  id="email-error"
-                  className="text-center min-w-3 text-red-600 text-xs"
-                >
-                  {formik.errors.description}
-                </p>
-              )}
-            </div>
+            <InputComponent
+              title='Descripción'
+              name='description'
+              formikTouched={formik.touched.description}
+              formikError={formik.errors.description}
+              formikOnBlur={formik.handleBlur}
+              formikHandleChange={formik.handleChange}
+              formikValuesName={formik.values.description}
+            />
           </div>
           <div className='w-full flex flex-col gap-5'>
-            <div className="flex flex-col w-full items-start gap-2">
-              <div className="flex px-4 justify-end items-start gap-2">
-                <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
-                  Precios minorista <span className='text-gray-400'>{"(opcional)"}</span>
-                </label>
-              </div>
-              <label
-                className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formik.touched.minorista && formik.errors.minorista ? 'border-red-500' : 'border-teal-700'
-                  }`}
-              >
-                <input
-                  type="number"
-                  className="grow placeholder-teal-700"
-                  placeholder='0'
-                  id="minorista"
-                  onBlur={formik.handleBlur}
-                  value={formik.values.minorista ? formik.values.minorista : ''}
-                  // onError={
-                  //   formik.touched.mayorista && Boolean(formik.errors.mayorista)
-                  // }
-                  autoComplete="current-minorista"
-                  onChange={formik.handleChange}
-                />
-                <MdOutlineAttachMoney className='text-customColor' />
-              </label>
-              {formik.touched.minorista && (
-                <p
-                  id="email-error"
-                  className="text-center min-w-3 text-red-600 text-xs"
-                >
-                  {formik.errors.minorista}
-                </p>
-              )}
-            </div>
-            <div className="flex flex-col w-full items-start gap-2">
-              <div className="flex px-4 justify-end items-start gap-2">
-                <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
-                  Precios mayorista <span className='text-gray-400'>{"(opcional)"}</span>
-                </label>
-              </div>
-              <label
-                className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formik.touched.mayorista && formik.errors.mayorista ? 'border-red-500' : 'border-teal-700'
-                  }`}
-              >
-                <input
-                  type="number"
-                  className="grow placeholder-teal-700"
-                  placeholder='0'
-                  id="mayorista"
-                  onBlur={formik.handleBlur}
-                  value={formik.values.mayorista ? formik.values.mayorista : ''}
-                  // onError={
-                  //   formik.touched.mayorista && Boolean(formik.errors.mayorista)
-                  // }
-                  autoComplete="current-mayorista"
-                  onChange={formik.handleChange}
-                />
-                <MdOutlineAttachMoney className='text-customColor' />
-              </label>
-            </div>
-            <div className="flex flex-col w-full items-start gap-2">
-              <div className="flex px-4 justify-end items-start gap-2">
-                <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
-                  Stock
-                </label>
-              </div>
-              <label
-                className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formik.touched.stock && formik.errors.stock ? 'border-red-500' : 'border-teal-700'
-                  }`}
-              >
-                <input
-                  type="number"
-                  className="grow placeholder-teal-700"
-                  placeholder='0'
-                  id="stock"
-                  onBlur={formik.handleBlur}
-                  value={formik.values.stock}
-                  // onError={
-                  //   formik.touched.stock && Boolean(formik.errors.stock)
-                  // }
-                  autoComplete="current-stock"
-                  onChange={formik.handleChange}
-                />
-                <span className='text-customColor text-xs'>cant.</span>
-              </label>
-            </div>
+            <InputNumberComponent
+              title='Precio minorista'
+              formikTouched={formik.touched.minorista}
+              formikError={formik.errors.minorista}
+              formikOnBlur={formik.handleBlur}
+              formikHandleChange={formik.handleChange}
+              formikValuesName={formik.values.minorista}
+            />
+            <InputNumberComponent
+              title='Precio mayorista'
+              formikTouched={formik.touched.mayorista}
+              formikError={formik.errors.mayorista}
+              formikOnBlur={formik.handleBlur}
+              formikHandleChange={formik.handleChange}
+              formikValuesName={formik.values.mayorista}
+            />
+            <InputNumberComponent
+              title='Stock'
+              formikTouched={formik.touched.stock}
+              formikError={formik.errors.stock}
+              formikOnBlur={formik.handleBlur}
+              formikHandleChange={formik.handleChange}
+              formikValuesName={formik.values.stock}
+            />
           </div>
         </div>
         <div className="w-36">
@@ -300,32 +196,18 @@ export const FormCreateProduct = () => {
           </label>
         </div>
         {showPromotion && (
-          <div className='w-[90%] sm:max-w-[70%] flex flex-col sm:flex-col md:flex-row justify-center gap-3 sm:gap-10 '>
-            <div className="flex flex-col w-full items-start gap-2">
-              <div className="flex px-4 justify-end items-start gap-2">
-                <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
-                  Descripción promoción
-                </label>
-              </div>
-              <label
-                className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formik.touched.descriptionPromotion && formik.errors.descriptionPromotion ? 'border-red-500' : 'border-teal-700'
-                  }`}
-              >
-                <input
-                  type='text'
-                  className="grow placeholder-teal-700"
-                  placeholder="Descripción"
-                  id="descriptionPromotion"
-                  onBlur={formik.handleBlur}
-                  value={formik.values.descriptionPromotion}
-                  // onError={
-                  //   formik.touched.descriptionPromotion && Boolean(formik.errors.descriptionPromotion)
-                  // }
-                  autoComplete="current-descriptionPromotion"
-                  onChange={formik.handleChange}
-                />
-              </label>
-            </div>
+          <div
+            className={`w-[90%] sm:max-w-[90%] flex flex-col sm:flex-col md:flex-row justify-center gap-3 sm:gap-10 transition-opacity duration-500 ease-in-out ${showPromotion ? 'opacity-100' : 'opacity-0'}`}
+          >
+            <InputComponent
+              title='Descripción promoción'
+              name='descriptionPromotion'
+              formikTouched={formik.touched.descriptionPromotion}
+              formikError={formik.errors.descriptionPromotion}
+              formikOnBlur={formik.handleBlur}
+              formikHandleChange={formik.handleChange}
+              formikValuesName={formik.values.descriptionPromotion}
+            />
             <div className='w-full flex flex-col gap-5'>
               <div className="flex flex-col w-full items-start gap-2">
                 <div className="flex px-4 justify-end items-start gap-2">
@@ -364,6 +246,7 @@ export const FormCreateProduct = () => {
             </div>
           </div>
         )}
+
         <div className="w-48">
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
           <button
