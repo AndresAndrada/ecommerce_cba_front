@@ -12,6 +12,7 @@ const Shop = lazy(() => import('../screens/Shop'))
 const Login = lazy(() => import('../screens/Login'))
 const Register = lazy(() => import('../screens/Register'))
 const CreateProduct = lazy(() => import('../screens/CreateProduct'))
+const DetailsProduct = lazy(() => import('../screens/DetailsProduct'))
 
 export default function NavigatorRouter() {
   const location = useLocation();
@@ -46,6 +47,7 @@ export default function NavigatorRouter() {
           <Route path={'/sign-in'} element={<Login />} />
           <Route path={'/sign-up'} element={<Register />} />
           <Route path={'/create-product'} element={<CreateProduct />} />
+          <Route path={'/details-product'} element={<DetailsProduct />} />
         </Route>
       </RouterRoutes>
       {location.pathname !== '/sign-in' &&
