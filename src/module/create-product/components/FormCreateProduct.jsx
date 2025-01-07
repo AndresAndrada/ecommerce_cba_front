@@ -12,8 +12,10 @@ import img from '../../../assets/icons/user-circle.svg'
 import usePatchImageProduct from '../hooks/usePatchImageProduct'
 import InputComponent from '../../core/ui/inputs/InputComponent'
 import InputNumberComponent from '../../core/ui/inputs/InputNumberComponent'
+import { useNavigate } from 'react-router-dom'
 
 export const FormCreateProduct = () => {
+  const navigate = useNavigate()
   const [showPromotion, setShowPromotion] = useState(false);
   const productAvatar = img;
   const [selectedFile, setSelectedFile] = useState(productAvatar);
@@ -52,9 +54,6 @@ export const FormCreateProduct = () => {
     onSubmit: async (values, { resetForm }) => {
       try {
         setLoading(true)
-        // const formData = new FormData()
-        // formData.append('image', values.image)
-        // formData.append('upload_preset', 'gravitad_preset')
         const res = await createProduct(values);
         if (res?.ok && Products?.objectId) {
           await patchImageProduct(values.image);
@@ -63,7 +62,7 @@ export const FormCreateProduct = () => {
             duration: 2000,
             position: 'top-center',
           })
-          // navigate('/')
+          navigate('/')
           setLoading(false)
         } else {
           setLoading(false)
@@ -126,7 +125,7 @@ export const FormCreateProduct = () => {
               <select
                 type="type"
                 placeholder="Tipo de producto"
-                className={`select input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 ${formik.touched.type && formik.errors.type ? 'border-red-500' : 'border-teal-700'}  placeholder-teal-700 rounded-lg focus:border-primary`}
+                className={`select input input-bordered w-full bg-white flex p-2 items-center text-teal-700 gap-2 border-2 ${formik.touched.type && formik.errors.type ? 'border-red-500' : 'border-teal-700'}  placeholder-teal-700 rounded-lg focus:border-primary`}
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.type}
@@ -165,6 +164,7 @@ export const FormCreateProduct = () => {
           <div className='w-full flex flex-col gap-5'>
             <InputNumberComponent
               title='Precio minorista'
+              name='minorista'
               formikTouched={formik.touched.minorista}
               formikError={formik.errors.minorista}
               formikOnBlur={formik.handleBlur}
@@ -173,6 +173,7 @@ export const FormCreateProduct = () => {
             />
             <InputNumberComponent
               title='Precio mayorista'
+              name='mayorista'
               formikTouched={formik.touched.mayorista}
               formikError={formik.errors.mayorista}
               formikOnBlur={formik.handleBlur}
@@ -181,6 +182,7 @@ export const FormCreateProduct = () => {
             />
             <InputNumberComponent
               title='Stock'
+              name='stock'
               formikTouched={formik.touched.stock}
               formikError={formik.errors.stock}
               formikOnBlur={formik.handleBlur}
@@ -192,7 +194,7 @@ export const FormCreateProduct = () => {
         <div className="w-36">
           <label className="label cursor-pointer flex flex-col gap-2">
             <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">Promoción</label>
-            <input type="checkbox" className={`toggle [--tglbg:white] ${showPromotion ? 'bg-green-950 border-green-950' : ''}`} onClick={() => setShowPromotion(!showPromotion)} />
+            <input type="checkbox" className={`toggle [--tglbg:white] ${showPromotion ? 'bg-teal-700 border-teal-700' : ''}`} onClick={() => setShowPromotion(!showPromotion)} />
           </label>
         </div>
         {showPromotion && (

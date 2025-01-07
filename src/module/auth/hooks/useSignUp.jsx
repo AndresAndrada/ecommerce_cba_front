@@ -7,7 +7,7 @@ function useSignUp() {
     password,
     userFullName,
   }) => {
-    const { data } = await axios.post('/user', {
+    const { data } = await axios.post('/users', {
       username,
       email,
       password,

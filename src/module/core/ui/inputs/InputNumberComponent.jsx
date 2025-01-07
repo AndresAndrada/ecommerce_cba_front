@@ -1,7 +1,7 @@
 import { MdOutlineAttachMoney } from "react-icons/md";
 
 // eslint-disable-next-line react/prop-types
-export default function InputNumberComponent({ title, formikTouched, formikError, formikOnBlur, formikHandleChange, formikValuesName }) {
+export default function InputNumberComponent({ title, name, formikTouched, formikError, formikOnBlur, formikHandleChange, formikValuesName }) {
   return (
     <div className="flex flex-col w-full items-start gap-2">
       <div className="flex px-4 justify-end items-start gap-2">
@@ -15,7 +15,8 @@ export default function InputNumberComponent({ title, formikTouched, formikError
       >
         <input
           type="number"
-          className="grow placeholder-teal-700"
+          name={name}
+          className="grow text-teal-700 placeholder-gray-400"
           placeholder='0'
           id={formikValuesName}
           onBlur={formikOnBlur}
