@@ -14,7 +14,6 @@ const formatTextLength = (text) => {
 export const ProductCard = ({ product }) => {
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   const { setItemsInCart, ConsumerProducts } = useProductStore((state) => state)
-
   const handleAddShoppingCard = (newItem) => {
     const currentItemsString = localStorage.getItem('shoppingCard')
     let currentItems = []
@@ -50,7 +49,7 @@ export const ProductCard = ({ product }) => {
         </div>
 
         <div className="card-actions justify-between">
-          <div className="font-medium">{ConsumerProducts === 'Minorista' ? product?.pirce.minorista : product?.pirce.mayorista} €</div>
+          <div className="font-medium">{ConsumerProducts === 'Minorista' ? product?.price.minorista : product?.price.mayorista} €</div>
           <div className="cursor-pointer">
             {
               <ShoppingCartIcon

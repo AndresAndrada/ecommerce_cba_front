@@ -27,6 +27,8 @@ export default function Shop() {
     setSelectedTab,
     ConsumerProducts,
     setConsumerProducts,
+    Filter,
+    setFilter
   } = useProductStore((state) => state)
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState('')
@@ -47,7 +49,7 @@ export default function Shop() {
   return (
     <main className="bg-primary pb-10">
       <header
-        className={clsx('w-full h-[200px] lg:h-[341px] bg-cover bg-no-repeat', {
+        className={clsx('hidden md:block w-full h-[200px] lg:h-[341px] bg-cover bg-no-repeat', {
           'bg-banner_person bg-[center_top_-1rem] sm:bg-[center_top_-2rem] lg:bg-[center_top_-5rem] xl:bg-[center_top_-7rem]':
             ConsumerProducts === 'Minorista',
           'bg-banner_pet bg-[center_top_-4rem] sm:bg-[center_bottom_-4rem] lg:bg-[center_bottom_-3rem] xl:bg-[center_bottom_-6rem] 2xl:bg-[center_bottom_-12rem]':
@@ -57,6 +59,8 @@ export default function Shop() {
       <NavigationShop
         option={ConsumerProducts}
         setOption={setConsumerProducts}
+        optionFilter={Filter}
+        setFilter={setFilter}
         setCurrentPage={setCurrentProductsPage}
         setSearch={handleSearch}
         selectedTab={SelectedTab}

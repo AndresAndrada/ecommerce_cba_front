@@ -48,6 +48,7 @@ export default function NavigatorRouter() {
           <Route path={'/sign-up'} element={<Register />} />
           <Route path={'/create-product'} element={<CreateProduct />} />
           <Route path={'/details-product'} element={<DetailsProduct />} />
+          <Route path="/product/:id" element={<DetailsProduct />} />
         </Route>
       </RouterRoutes>
       {location.pathname !== '/sign-in' &&

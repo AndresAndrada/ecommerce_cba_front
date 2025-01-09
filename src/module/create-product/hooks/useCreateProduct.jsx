@@ -7,7 +7,7 @@ function useCreateProduct() {
 
   const createProduct = async (values) => {
     try {
-      // Primero crea el producto sin la imagen
+      console.log(values, 'VALUES');
       const productValues = {
         idType: values.type,
         product: {
@@ -31,26 +31,6 @@ function useCreateProduct() {
         }
       });
       if (data?.newProducto?.id !== undefined) {
-        // const formData = new FormData();
-        // if (!(values.image instanceof File)) {
-        //   console.error('El valor no es un archivo válido:', values.image);
-        //   return { ok: false, message: 'La imagen no es válida' };
-        // }
-        // formData.append('image', values.image, values.image.name);
-        // console.log(values.image, 'values.image');
-        // console.log(formData, 'FORM DATA');
-
-        // const imageResponse = await axios.patch(
-        //   `/products/image/${data.newProducto.id}`,
-        //   formData,
-        //   {
-        //     headers: {
-        //       'Authorization': User.tokenSession,
-        //       'Content-Type': 'multipart/form-data'
-        //     }
-        //   }
-        // );
-        // console.log(imageResponse, 'IMAGE RESPONSE');
         setProducts({
           objectId: data.newProducto.id,
           ...data,

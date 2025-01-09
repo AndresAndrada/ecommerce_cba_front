@@ -60,11 +60,11 @@ export default function Navbar() {
                 <h3 className=" text-[20px] font-medium">Tienda</h3>
               </NavItem>
             </li>
-            <li>
+            {/* <li>
               <NavItem route={'/product'}>
                 <h3 className=" text-[20px] font-medium">Recetas</h3>
               </NavItem>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="navbar-end ">
@@ -100,15 +100,15 @@ export default function Navbar() {
                 </NavItem>
               </li>
               <li>
-                <NavItem route="/store">
+                <NavItem route="/shop">
                   <h3 className=" text-[16px] font-medium">Tienda</h3>
                 </NavItem>
               </li>
-              <li>
+              {/* <li>
                 <NavItem route="/recipes">
                   <h3 className=" text-[16px] font-medium">Recetas</h3>
                 </NavItem>
-              </li>
+              </li> */}
               <li>
                 <button type="button" className="flex justify-between items-center w-full" onClick={handlerSision}>
                   <h3 className="text-[16px] font-medium text-white">

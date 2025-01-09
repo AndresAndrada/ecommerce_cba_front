@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import UserCircle from '../../../assets/svg/userCircle.svg'
 // import logout from '../../../assets/svg/logout.svg'
 import NavItem from './navigation/NavItem'
@@ -7,11 +8,17 @@ import { ArrowLeftEndOnRectangleIcon } from '@heroicons/react/24/outline'
 import { ArrowLeftStartOnRectangleIcon } from '@heroicons/react/24/outline'
 // import { getLocalStorage } from '@/modules/auth/utils/getLocalStorage'
 import { useUserStore } from '../../../stores'
+import { useEffect } from 'react'
+import useGetUserById from '../hooks/useGetUserById'
 
 export default function UserDropdown() {
   const emailAdmin = import.meta.env.VITE_EMAIL_ADMIN;
   const navigate = useNavigate()
-  const { Authenticated, User } = useUserStore((state) => state)
+  const { Authenticated, User, UserById } = useUserStore((state) => state)
+  const { getById } = useGetUserById();
+  useEffect(() => {
+    getById(User.objectId);
+  }, []);
   // const localStorage = getLocalStorage('Parse/023/currentUser')
   const { logout } = useLogout()
   return (
@@ -38,7 +45,7 @@ export default function UserDropdown() {
                   />
                 </div>
               </NavItem>
-              {User?.emailUser === emailAdmin && <NavItem route="/create-product">
+              {User?.admin === emailAdmin || UserById?.admin && <NavItem route="/create-product">
                 <div className="flex gap-3 ">
                   <h3 className=" text-[16px] font-medium text-white">
                     Crear producto
