@@ -45,13 +45,23 @@ export default function UserDropdown() {
                   />
                 </div>
               </NavItem>
-              {User?.admin === emailAdmin || UserById?.admin && <NavItem route="/create-product">
-                <div className="flex gap-3 ">
-                  <h3 className=" text-[16px] font-medium text-white">
-                    Crear producto
-                  </h3>
-                </div>
-              </NavItem>}
+              {User?.admin === emailAdmin || UserById?.admin && <>
+                <NavItem route="/create-product">
+                  <div className="flex gap-3 ">
+                    <h3 className=" text-[16px] font-medium text-white">
+                      Crear producto
+                    </h3>
+                  </div>
+                </NavItem>
+                <NavItem route="/products-all">
+                  <div className="flex gap-3 ">
+                    <h3 className=" text-[16px] font-medium text-white">
+                      Productos
+                    </h3>
+                  </div>
+                </NavItem>
+              </>
+              }
             </li>
             <li>
               <button type="button" onClick={async () => await logout()}>

@@ -21,7 +21,6 @@ export const FormCreateProduct = () => {
   const [selectedFile, setSelectedFile] = useState(productAvatar);
   const [loading, setLoading] = useState(false);
   const { Type } = useTypeStore();
-  const { Products } = useProductStore((state) => state);
   const { createProduct } = useCreateProduct();
   const { patchImageProduct } = usePatchImageProduct();
   const { getAllType } = useGetType();
@@ -55,8 +54,9 @@ export const FormCreateProduct = () => {
       try {
         setLoading(true)
         const res = await createProduct(values);
-        if (res?.ok && Products?.objectId) {
-          await patchImageProduct(values.image);
+        if (res?.ok && res?.newProducto?.id) {
+          console.log(res.newProducto?.id, 'ENTEEEEEE');
+          await patchImageProduct(values.image, res?.newProducto?.id);
           resetForm()
           toast.success('Producto creado con éxito', {
             duration: 2000,

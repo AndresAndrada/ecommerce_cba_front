@@ -3,21 +3,19 @@ import { useProductStore, useUserStore } from "../../../stores";
 
 function usePatchImageProduct() {
   const { User } = useUserStore((state) => state);
-  const { Products, setProducts } = useProductStore((state) => state);
+  const { setProducts } = useProductStore((state) => state);
 
-  const patchImageProduct = async (values) => {
+  const patchImageProduct = async (values, idProduct) => {
     try {
-      if (Products?.objectId) {
-        console.log(values, 'ARCHIVOOOO IMAGE');
-        const idProduct = Products.objectId;
+      if (idProduct) {
+        // const idProduct = Products?.newProducto.id;
+        // console.log(Products?.newProducto.id, 'IDPRODUCT');
         const formData = new FormData();
         if (!(values instanceof File)) {
           console.error('El valor no es un archivo válido:', values);
           return { ok: false, message: 'La imagen no es válida' };
         }
         formData.append('image', values, values.name);
-        console.log(values, 'values.image');
-        console.log(formData, 'FORM DATA');
         const { data } = await axios.patch(
           `/products/image/${idProduct}`,
           formData,
@@ -29,10 +27,7 @@ function usePatchImageProduct() {
           }
         );
         console.log(data, 'RESIMAGE');
-        setProducts({
-          ...Products,
-          ...data,
-        });
+        await setProducts({ ...data });
         return { ok: true };
       }
       // if (data?.message) return { ok: false, message: data?.message };
