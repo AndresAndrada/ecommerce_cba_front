@@ -50,7 +50,7 @@ export default function FormLogin() {
     },
   })
   return (
-    <div className="w-100% max-w-96 sm:w-96 inline-flex p-6 flex-col justify-center items-center gap-8 rounded-lg bg-white shadow-xl">
+    <div className="w-100% max-w-[18rem] sm:w-96 inline-flex p-6 flex-col justify-center items-center gap-8 rounded-lg bg-white shadow-xl">
       <div>
         <Toaster />
       </div>

@@ -7,7 +7,6 @@ function useCreateProduct() {
 
   const createProduct = async (values) => {
     try {
-      // Primero crea el producto sin la imagen
       const productValues = {
         idType: values.type,
         product: {
@@ -31,11 +30,9 @@ function useCreateProduct() {
         }
       });
       if (data?.newProducto?.id !== undefined) {
-        setProducts({
-          objectId: data.newProducto.id,
-          ...data,
-        });
-        return { ok: true };
+        console.log(data.newProducto.id, 'IDE CREATEEEEEEE');
+        setProducts({ ...data });
+        return { ok: true, ...data };
       }
       if (data?.message) return { ok: false, message: data?.message };
       return { ok: false };

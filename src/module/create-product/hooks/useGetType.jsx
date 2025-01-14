@@ -5,7 +5,7 @@ function useGetType() {
   const { setType } = useTypeStore();
   const getAllType = async () => {
     try {
-      const { data } = await axios.get('/type');
+      const { data } = await axios.get('/types');
       if (data?.length > 0) {
         setType(data)
         return { ok: true }
